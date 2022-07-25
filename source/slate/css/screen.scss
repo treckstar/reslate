@@ -92,7 +92,13 @@ html, body {
       outline: none;
       color: $nav-text;
       border-radius: 0; /* ios has a default border radius */
+
+      &::-webkit-input-placeholder {
+        color: $nav-text;
+      }
     }
+
+    
 
     &:before {
       position: absolute;
@@ -155,18 +161,27 @@ html, body {
   .toc-link.active {
     background-color: $nav-active-bg;
     color: $nav-active-text;
+
+    &.toc-h1 {
+      box-shadow: 0px -1px 0px #000;
+    }
   }
 
   // this is parent links of the currently selected ToC entry
   .toc-link.active-parent {
     background-color: $nav-active-parent-bg;
     color: $nav-active-parent-text;
+    box-shadow: 0px -1px 0px #000;
   }
 
   .toc-list-h2 {
     display: none;
     background-color: $nav-subitem-bg;
     font-weight: 500;
+
+    &.active {
+      box-shadow: 0px 1px 0px #000;
+    }
   }
 
   .toc-h2 {
@@ -332,6 +347,7 @@ html, body {
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
+    text-shadow: 0 1px 0 white;
 
     @extend %left-col;
   }
@@ -370,7 +386,7 @@ html, body {
     border-top: 1px solid #ccc;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
+    background-image: linear-gradient(to bottom, rgba(#fff, 0.5), rgba(#fff, 0));
   }
 
   // h2s right after h1s should bump right up
@@ -465,6 +481,7 @@ html, body {
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
+    text-shadow: 0 1px 0 white;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
@@ -476,6 +493,7 @@ html, body {
 
     &.success {
       background-color: $aside-success-bg;
+      text-shadow: 0 1px 0 #f0fbf2;
     }
   }
 
@@ -519,9 +537,12 @@ html, body {
   pre, blockquote {
     background-color: $code-bg;
     color: #fff;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+    
 
     margin: 0;
     width: $examples-width;
+    padding: 2em $main-padding;
 
     float:right;
     clear:right;
@@ -541,16 +562,17 @@ html, body {
 
   pre {
     @extend %code-font;
-    padding-top: 2em;
-    padding-bottom: 2em;
     padding: 2em $main-padding;
   }
 
   blockquote {
     &>p {
       background-color: $code-annotation-bg;
-      padding: $code-annotation-padding 2em;
-      color: #eee;
+      padding: $code-annotation-padding;
+      color: #ccc;
+      border-bottom: 1px solid #404040;
+      border-top: 1px solid #000000;
+      border-radius: 5px;
     }
   }
 }
